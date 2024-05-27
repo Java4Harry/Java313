@@ -1,0 +1,12 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count`()
+BEGIN
+	SET @counter = 1;
+    SET @iter = 1;
+	label_count: LOOP
+    SELECT @counter AS "Найти сумму чисел от 1 до 10, используя цикл LOOP";
+    IF @iter = 10 THEN LEAVE label_count;
+    END IF;
+    SET @counter = @counter + (@iter + 1);
+   SET @iter = @iter + 1;
+    END LOOP label_count;
+END
