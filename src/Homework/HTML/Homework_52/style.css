@@ -1,0 +1,126 @@
+div{
+    border: 1px solid black;
+    position: absolute;
+}
+
+.container{
+    
+}
+
+.face{
+    background: silver;
+    width: 550px;
+    height: 400px;
+    left: 200px;
+    top: 300px;
+}
+
+.nose{
+    background: red;
+    width: 50px;
+    height: 50px;
+    left: 450px;
+    top: 450px;
+}
+
+.mouth{
+    background: yellow;
+    width: 250px;
+    height: 100px;
+    left: 350px;
+    top: 550px;
+}
+
+.pereponka_l{
+    background: gray;
+    width: 50px;
+    height: 100px;
+    left: 150px;
+    top: 400px;
+    z-index: -1;
+
+}
+
+.ear_l{
+    background: silver;
+    width: 50px;
+    height: 200px;
+    left: 100px;
+    top: 350px;
+}
+
+.pereponka_r{
+    background: gray;
+    width: 50px;
+    height: 100px;
+    left: 750px;
+    top: 400px;
+    z-index: -1;
+
+}
+
+.ear_r{
+    background: silver;
+    width: 50px;
+    height: 200px;
+    left: 800px;
+    top: 350px;
+}
+
+.antenna{
+    background: gray;
+    width: 50px;
+    height: 100px;
+    left: 450px;
+    top: 200px;
+    z-index: -1;
+
+}
+
+.camera{
+    background: silver;
+    width: 150px;
+    height: 150px;
+    left: 400px;
+    top: 50px;
+}
+
+.linse{
+    background: yellow;
+    width: 50px;
+    height: 50px;
+    left: 450px;
+    top: 100px;
+}
+
+.eye_l{
+    background: white;
+    width: 100px;
+    height: 100px;
+    left: 300px;
+    top: 350px;
+}
+
+.pupil_l{
+    background: mediumpurple;
+    width: 50px;
+    height: 50px;
+    left: 350px;
+    top: 400px;
+}
+
+.eye_r{
+    background: white;
+    width: 100px;
+    height: 100px;
+    left: 550px;
+    top: 350px;
+}
+
+.pupil_r{
+    background: mediumpurple;
+    width: 50px;
+    height: 50px;
+    left: 600px;
+    top: 400px;
+}
