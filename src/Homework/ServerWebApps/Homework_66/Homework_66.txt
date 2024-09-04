@@ -1,0 +1,37 @@
+CREATE DATABASE IF NOT EXISTS hospital;
+
+USE hospital;
+
+CREATE TABLE IF NOT EXISTS patient (
+id INT PRIMARY KEY AUTO_INCREMENT,
+FIO_patient VARCHAR(50) NOT NULL,
+insurance BIGINT NOT NULL);
+
+CREATE TABLE IF NOT EXISTS doctor (
+id INT PRIMARY KEY AUTO_INCREMENT,
+FIO_doctor VARCHAR(50) NOT NULL,
+specialty VARCHAR(30) NOT NULL,
+cabinet INT NOT NULL UNIQUE);
+
+CREATE TABLE IF NOT EXISTS schedule (
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_doctor INT NOT NULL,
+id_patient INT NOT NULL,
+date DATE NOT NULL,
+time TIME NOT NULL,
+FOREIGN KEY (id_doctor) REFERENCES doctor (id),
+FOREIGN KEY (id_patient) REFERENCES patient (id)
+);
+
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Назаров Алексей Викторович", "терапевт", 202);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Вишневская Ольга Ниловна", "отоларинголог", 205);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Солович Артур Эдуардович", "хирург", 310);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Ломов Константин Олегович", "окулист", 107);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Дробинина Светлана Олеговна", "дерматолог", 304);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Никифоров Артем Владиславович", "терапевт", 201);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Ляшкин Егор Анатольевич", "уролог", 312);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Светикова Татьяна Вячеславовна", "терапевт", 203);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Токмачевский Руслан Сергеевич", "отоларинголог", 206);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Зубова Виктория Викторовна", "стоматолог", 101);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Толстиков Иван Петрович", "уролог", 307);
+INSERT INTO doctor (FIO_doctor, specialty, cabinet) VALUES ("Велхова Жанна Олеговна", "отоларинголог", 306);
