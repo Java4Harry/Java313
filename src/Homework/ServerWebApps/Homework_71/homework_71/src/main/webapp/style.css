@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+}
+.container{
+    width: 70%;
+    margin: 0;
+}
+
+p{
+    padding: 5px 0;
+}
+header, footer {
+    text-align: center;
+}
+header{
+    text-transform: uppercase;
+    font-size: 24px;
+    background: bisque;
+    padding: 20px;
+}
+
+footer{
+    padding: 10px;
+    background: bisque;
+    font-size: 10px;
+}
+
+section{
+    background: #fdf0e0;
+    padding: 20px;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+.button__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}.button__container__element{
+     width: 100px;
+     margin: 0 20px;
+ }
+ input, select{
+     margin-left: 20px;
+ }
