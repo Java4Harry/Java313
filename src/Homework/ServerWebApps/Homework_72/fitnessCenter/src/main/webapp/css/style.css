@@ -1,0 +1,158 @@
+.main{
+    background: #282525;
+}
+
+.wrap{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    list-style: none;
+    text-transform: uppercase;
+}
+
+.logo{
+    margin-right: 40%;
+}
+
+.menu a{
+    color: #d3c4c4;
+    text-decoration: none;
+}
+
+.menu a:hover{
+    color: #fff;
+}
+
+.carousel-item{
+    height: 500px;
+}
+.d-block {
+    background-size: cover;
+}
+
+.carousel-caption {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.carousel-caption h5{
+    font-size: 36px;
+}
+
+.carousel-caption p{
+    font-size: 28px;
+}
+
+.advantages{
+    margin: 60px 0;
+}
+
+.advantages__block{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.advantages__element-left{
+    flex-basis: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.advantages__element-right{
+    flex-basis: 30%;
+}
+
+.advantages__element-right img{
+    width: 100%;
+}
+
+.advantages__element-left div{
+    margin: 10px 0;
+    width: 44%;
+    border-top: solid 1px black;
+}
+
+h2{
+    text-align: center;
+    padding: 40px 0;
+}
+
+.team{
+    padding: 60px 0;
+}
+
+.team__block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.team__element{
+    flex-basis: 24%;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+}
+
+.team__element img{
+    width: 100%;
+}
+
+footer{
+    background: #282525;
+    text-transform: uppercase;
+    text-align: center;
+    color: #d3c4c4;
+    padding: 30px 0 10px;
+}
+
+.height{
+    min-height: calc(100% - 64px - 80px - 100px);
+}
+
+.form{
+    width: 600px;
+    margin: 100px auto;
+}
+
+.button{
+    background: #282525 !important;
+    margin-top: 20px;
+    width: 100%;
+    color: #d3c4c4 !important;
+}
+
+.center{
+    text-align: center;
+}
+
+/*Administrator*/
+
+.menu button{
+    background: #4b4444;
+    border: 0;
+    color: #d3c4c4;
+}
+.menu button:hover{
+    color: bisque;
+    background: #4B4444FF;
+}
+
+.dropdown-menu a{
+    color: #d3c4c4;
+    background: #282525;
+}
+
+.dropdown-menu a:hover{
+    color: #ffffff;
+    background: #4f4545;
+}

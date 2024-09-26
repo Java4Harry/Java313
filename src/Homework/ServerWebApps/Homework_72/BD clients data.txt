@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS system_fitness;
+
+USE system_fitness;
+
+CREATE TABLE IF NOT EXISTS client_data(
+id INT PRIMARY KEY AUTO_INCREMENT,
+full_name VARCHAR(45) NOT NULL,
+email VARCHAR(45) NOT NULL,
+password VARCHAR(45) NOT NULL
+);
