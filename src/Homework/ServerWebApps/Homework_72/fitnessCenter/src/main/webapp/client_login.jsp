@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <title>Client Login Page</title>
@@ -9,6 +10,14 @@
 <div class="height">
     <section class="form">
         <h2>Авторизация клиента</h2>
+        <c:if test="${not empty errorMsg}">
+            <p class="center text-danger fs-3">${errorMsg}</p>
+            <c:remove var="errorMsg" scope="session" />
+        </c:if>
+        <c:if test="${not empty succMsg}">
+            <p class="center text-success fs-3">${succMsg}</p>
+            <c:remove var="succMsg" scope="session" />
+        </c:if>
         <form action="clientLogin" method="post">
             <div>
                 <label for="email-address">Email:</label>

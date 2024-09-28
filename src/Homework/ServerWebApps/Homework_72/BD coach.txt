@@ -1,0 +1,6 @@
+USE system_fitness;
+
+CREATE TABLE IF NOT EXISTS coach (
+id INT PRIMARY KEY AUTO_INCREMENT,
+coach_name VARCHAR(45) NOT NULL
+);

@@ -3,7 +3,7 @@
     <div class="wrap">
         <ul class="menu">
             <li class="logo"><a href="index.jsp">Главная</a></li>
-            <li><a href="coach.jsp">Инструктор</a></li>
+            <li><a href="worker.jsp">Сотрудник</a></li>
             <li><a href="client.jsp">Клиент</a></li>
             <li>
                 <div class="dropdown">

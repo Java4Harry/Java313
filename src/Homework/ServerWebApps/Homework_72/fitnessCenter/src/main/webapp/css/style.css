@@ -156,3 +156,33 @@ footer{
     color: #ffffff;
     background: #4f4545;
 }
+
+.admin{
+    padding: 60px 0;
+}
+
+.admin__block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin__element{
+    flex-basis: 23%;
+    margin: 0 10px;
+    padding: 30px;
+    border: 1px solid grey;
+}
+
+.admin__element img {
+    width: 100%;
+}
+
+.admin__element h3, .admin__element p{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.admin__element p{
+    font-size: 24px;
+}
