@@ -178,6 +178,10 @@ footer{
     width: 100%;
 }
 
+.admin__element:hover{
+    cursor: pointer;
+}
+
 .admin__element h3, .admin__element p{
     text-align: center;
     text-transform: uppercase;
@@ -185,4 +189,24 @@ footer{
 
 .admin__element p{
     font-size: 24px;
+}
+
+.btn-worker{
+    position: absolute;
+    bottom: 20px;
+}
+
+.worker__block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.worker__element{
+    flex-basis: 24%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;;
+    padding: 60px 60px 50px;
+    margin: 30px;
+    text-align: center;
 }

@@ -27,7 +27,7 @@
                 <label for="psw">Пароль:</label>
                 <input type="password" name="password" class="form-control" id="psw" required>
             </div>
-            <button class="btn button">Авторизация</button>
+            <button class="btn button btn-dark">Авторизация</button>
         </form>
         <p class="center">У Вас нет аккаунта? <a href="signup.jsp" class="text-decoration-none">Создать аккаунт</a></p>
     </section>

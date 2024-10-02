@@ -2,6 +2,8 @@
 <%@ page import="com.db.DBConnect" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.entity.Coach" %>
+<%@ page import="com.dao.WorkerDao" %>
+<%@ page import="com.entity.Worker" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
@@ -13,15 +15,16 @@
 <jsp:include page="navbar.jsp" />
 <section class="worker">
     <div class="wrap">
-        <h2>Добавить сотрудника</h2>
-        <c:if test="${not empty sucсMsg}">
-            <p class="center text-success fs-3">${sucсMsg}</p>
-            <c:remove var="sucсMsg" scope="session" />
-        </c:if>
-        <c:if test="${not empty errorMsg}">
-            <p class="center text-danger fs-3">${errorMsg}</p>
-            <c:remove var="errorMsg" scope="session" />
-        </c:if>
+        <button class="btn btn-dark btn-worker" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            Добавить инструктора
+        </button>
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="staticBackdropLabel">Добавить инструктора</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
         <form action="../addWorker" method="post">
             <div class="mb-3">
                 <label for="full">ФИО:</label>
@@ -43,7 +46,7 @@
                         CoachDao dao = new CoachDao(DBConnect.getConn());
                         List<Coach> list = dao.getAllCoach();
                         for (Coach c : list) { %>
-                    <option value=""><%= c.getCoachName()%></option>
+                    <option value="<%= c.getCoachName()%>"><%= c.getCoachName()%></option>
                     <%
                         }
                     %>
@@ -63,6 +66,50 @@
             </div>
             <button class="btn btn-dark">Отправить</button>
         </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <c:if test="${not empty sucсMsg}">
+            <p class="center text-success fs-3">${sucсMsg}</p>
+            <c:remove var="sucсMsg" scope="session" />
+        </c:if>
+        <c:if test="${not empty errorMsg}">
+            <p class="center text-danger fs-3">${errorMsg}</p>
+            <c:remove var="errorMsg" scope="session" />
+        </c:if>
+        <h2>Данные инструкторов</h2>
+        <table class="table">
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Дата рождения</th>
+                <th scope="col">Квалификация</th>
+                <th scope="col">Секция</th>
+                <th scope="col">Email</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Действие</th>
+            </tr>
+            <%
+                WorkerDao dao2 = new WorkerDao(DBConnect.getConn());
+                List<Worker> list2 = dao2.getAllWorkers();
+                for (Worker w : list2) {
+                    %>
+            <tr>
+                <td><%= w.getFullName()%></td>
+                <td><%= w.getDob()%></td>
+                <td><%= w.getQualification()%></td>
+                <td><%= w.getSection()%></td>
+                <td><%= w.getEmail()%></td>
+                <td><%= w.getPhone()%></td>
+                <td>
+                    <a href="edit_worker.jsp?id=<%= w.getId()%>" class="btn btn-sm btn-dark">Изменить</a>
+                    <a href="../deleteWorker?id=<%= w.getId()%>" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
     </div>
 </section>
 </body>

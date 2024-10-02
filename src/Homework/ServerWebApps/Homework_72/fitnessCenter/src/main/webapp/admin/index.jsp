@@ -19,8 +19,8 @@
         <h2>Панель администратора</h2>
         <div class="admin__block">
             <div class="admin__element">
-                <img src="../component/images/picto_1.jpg" alt="">
-                <h3>Сотрудники</h3>
+                <img src="../component/images/picto_4.jpg" alt="">
+                <h3>Инструкторы</h3>
                 <p>7</p>
             </div>
             <div class="admin__element">
@@ -34,8 +34,8 @@
                 <p>10</p>
             </div>
             <div class="admin__element" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img src="../component/images/picto_4.jpg" alt="">
-                <h3>Инструктор</h3>
+                <img src="../component/images/picto_1.jpg" alt="">
+                <h3>Секция</h3>
                 <p>10</p>
             </div>
         </div>
@@ -44,13 +44,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление инструктора</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление секции</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="../addCoach" method="post">
                         <div class="form-group">
-                            <label for="coach">Введите имя инструктора:</label>
+                            <label for="coach">Введите название секции:</label>
                             <input type="text" name="coachname" class="form-control" id="coach">
                         </div>
                         <div class="text-center mt-3">
