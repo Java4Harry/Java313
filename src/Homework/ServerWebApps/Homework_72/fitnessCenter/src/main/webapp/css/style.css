@@ -210,3 +210,12 @@ footer{
     margin: 30px;
     text-align: center;
 }
+
+.but{
+    margin: 20px 0;
+    color: #d3c4c4 !important;
+    background: #282525 !important;
+    width: 100%;
+    padding: 10px;
+
+}

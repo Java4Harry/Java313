@@ -15,9 +15,9 @@
 <c:if test="${empty workerObj}">
     <c:redirect url="../coach_login.jsp"></c:redirect>
 </c:if>
-<c:if test="${not empty sucMsg}">
-    <p class="center text-success fs-3">${sucMsg}</p>
-    <c:remove var="sucMsg" scope="session" />
+<c:if test="${not empty sucсMsg}">
+    <p class="center text-success fs-3">${sucсMsg}</p>
+    <c:remove var="sucсMsg" scope="session" />
 </c:if>
 <c:if test="${not empty errorMsg}">
     <p class="center text-danger fs-3">${errorMsg}</p>
@@ -54,12 +54,21 @@
                 <td><%= app.getLikes()%></td>
                 <td><%= app.getStatus()%></td>
                 <td>
-                    <a href="comment.jsp?id=<%= app.getId()%>" class="btn btn-sm btn-dark">Комментарий</a>
+                    <%
+                        if("В обработке".equals(app.getStatus())){
+                    %>
+                    <a href="comments.jsp?id=<%= app.getId()%>" class="btn btn-sm btn-dark">Комментарий</a>
+                    <%
+                        } else {
+                    %>
+                    <a href="#" class="btn btn-sm btn-dark disabled">Комментарий</a>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <%
                 }
-
             %>
         </table>
     </div>

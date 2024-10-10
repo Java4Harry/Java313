@@ -1,3 +1,5 @@
+<%@ page import="com.dao.WorkerDao" %>
+<%@ page import="com.db.DBConnect" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -17,26 +19,29 @@
 <section class="admin">
     <div class="wrap">
         <h2>Панель администратора</h2>
+        <%
+            WorkerDao dao = new WorkerDao(DBConnect.getConn());
+        %>
         <div class="admin__block">
             <div class="admin__element">
                 <img src="../component/images/picto_4.jpg" alt="">
                 <h3>Инструкторы</h3>
-                <p>7</p>
+                <p><%= dao.countWorkers()%></p>
             </div>
             <div class="admin__element">
                 <img src="../component/images/picto_2.jpg" alt="">
                 <h3>Клиенты</h3>
-                <p>37</p>
+                <p><%= dao.countClients()%></p>
             </div>
             <div class="admin__element">
                 <img src="../component/images/picto_3.jpg" alt="">
-                <h3>Общее</h3>
-                <p>10</p>
+                <h3>Занятия</h3>
+                <p><%= dao.countAppointments()%></p>
             </div>
             <div class="admin__element" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <img src="../component/images/picto_1.jpg" alt="">
                 <h3>Секция</h3>
-                <p>10</p>
+                <p><%= dao.countCoach()%></p>
             </div>
         </div>
     </div>

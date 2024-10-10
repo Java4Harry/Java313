@@ -149,4 +149,80 @@ public class WorkerDao {
         }
         return worker;
     }
+
+    public int countWorkers(){
+        int i = 0;
+        try{
+            String sql = "SELECT * FROM worker";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public int countAppointments(){
+        int i = 0;
+        try{
+            String sql = "SELECT * FROM appointment";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public int countClients(){
+        int i = 0;
+        try{
+            String sql = "SELECT * FROM client_data";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public int countCoach(){
+        int i = 0;
+        try{
+            String sql = "SELECT * FROM coach";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public int countAppointmentWorkerId(int cid){
+        int i = 0;
+        try{
+            String sql = "SELECT * FROM appointment WHERE worker_id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, cid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
 }
