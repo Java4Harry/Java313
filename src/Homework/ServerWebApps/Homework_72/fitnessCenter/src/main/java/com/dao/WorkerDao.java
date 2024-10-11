@@ -225,4 +225,60 @@ public class WorkerDao {
         }
         return i;
     }
+
+    public boolean checkOldPassword(int workerId, String oldPassword) {
+        boolean flag = false;
+        try{
+            String sql = "SELECT * FROM worker WHERE id = ? AND password = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, workerId);
+            ps.setString(2, oldPassword);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                flag = true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean changePassword(int workerId, String newPassword) {
+        boolean flag = false;
+        try{
+            String sql = "UPDATE worker SET password = ? WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newPassword);
+            ps.setInt(2, workerId);
+            int row = ps.executeUpdate();
+            if(row == 1) {
+                flag = true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean editWorkerProfile(Worker worker) {
+        boolean flag = false;
+        try{
+            String sql = "UPDATE worker SET full_name=?, dob=?, qualification=?, section=?, email=?, phone=? WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, worker.getFullName());
+            ps.setString(2, worker.getDob());
+            ps.setString(3, worker.getQualification());
+            ps.setString(4, worker.getSection());
+            ps.setString(5, worker.getEmail());
+            ps.setString(6, worker.getPhone());
+            ps.setInt(7, worker.getId());
+            int row = ps.executeUpdate();
+            if (row == 1) {
+                flag = true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

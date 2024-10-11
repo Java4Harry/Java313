@@ -1,6 +1,7 @@
-package com.client.servlet;
+package com.worker.servlet;
 
 import com.dao.ClientDao;
+import com.dao.WorkerDao;
 import com.db.DBConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,28 +12,28 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/clientChangePassword")
-public class ChangePassword extends HttpServlet {
+@WebServlet("/workerChangePassword")
+public class WorkerPasswordChange extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int cid = Integer.parseInt(req.getParameter("cid"));
+        int wid = Integer.parseInt(req.getParameter("wid"));
         String oldPassword = req.getParameter("oldPassword");
         String newPassword = req.getParameter("newPassword");
 
-        ClientDao clientDao = new ClientDao(DBConnect.getConn());
+        WorkerDao dao = new WorkerDao(DBConnect.getConn());
         HttpSession session = req.getSession();
-        if(clientDao.checkOldPassword(cid, oldPassword)) {
-            if(clientDao.changePassword(cid, newPassword)) {
+        if(dao.checkOldPassword(wid, oldPassword)) {
+            if(dao.changePassword(wid, newPassword)) {
                 session.setAttribute("succMsg", "Пароль изменен успешно");
-                resp.sendRedirect("change_password.jsp");
+                resp.sendRedirect("worker/edit_profile.jsp");
             } else{
-                session.setAttribute("errorMsg", "Ошибка сервера");
-                resp.sendRedirect("change_password.jsp");
+                session.setAttribute("error", "Ошибка сервера");
+                resp.sendRedirect("worker/edit_profile.jsp");
             }
 
         } else{
             session.setAttribute("errorMsg", "Старый пароль не верный");
-            resp.sendRedirect("change_password.jsp");
+            resp.sendRedirect("worker/edit_profile.jsp");
         }
     }
 }
