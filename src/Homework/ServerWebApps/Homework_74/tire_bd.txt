@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS tire_bd;
+
+USE tire_bd;
+
+CREATE TABLE IF NOT EXISTS tire(
+id INT PRIMARY KEY AUTO_INCREMENT,
+season VARCHAR(10),
+radius INT,
+width INT,
+height int
+);
