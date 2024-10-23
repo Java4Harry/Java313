@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS homework75_db;
+
+USE homework75_db;
+
+CREATE TABLE goods(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(30),
+county VARCHAR(15),
+category VARCHAR(15),
+price INT
+);
