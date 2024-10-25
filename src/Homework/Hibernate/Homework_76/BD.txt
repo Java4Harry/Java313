@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS homework75_db;
+
+USE homework75_db;
+
+CREATE TABLE IF NOT EXISTS sklad(
+id INT PRIMARY KEY AUTO_INCREMENT,
+city VARCHAR(15),
+address VARCHAR(15),
+square INT
+);
+
+
+CREATE TABLE IF NOT EXISTS goods(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(30),
+county VARCHAR(15),
+category VARCHAR(15),
+price INT,
+sklad_id INT,
+FOREIGN KEY (sklad_id) REFERENCES sklad(id)
+);
