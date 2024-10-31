@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS worklist;
+
+USE worklist;
+
+CREATE TABLE IF NOT EXISTS specialists(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(15),
+surname VARCHAR(30),
+specialization VARCHAR(30)
+);
+
+CREATE TABLE IF NOT EXISTS projects(
+id INT PRIMARY KEY AUTO_INCREMENT,
+project VARCHAR(40)
+);
+
+CREATE TABLE IF NOT EXISTS workers_on_project(
+specialist_id INT NOT NULL,
+project_id INT NOT NULL,
+PRIMARY KEY (specialist_id, project_id),
+FOREIGN KEY (specialist_id) REFERENCES specialists(id),
+FOREIGN KEY (project_id) REFERENCES projects(id)
+);
