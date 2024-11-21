@@ -5,8 +5,12 @@
     <title>Profile Page</title>
 </head>
 <body>
-<section>
+<section class="text-center">
     <h1>Profile Page</h1>
+    <h4>Имя: <span th:text="${user.name}"></span></h4>
+    <h4>Email: <span th:text="${user.email}"></span></h4>
+    <h4>Телефон: <span th:text="${user.phone}"></span></h4>
+    <a href="/logout">Выйти</a>
 </section>
 </body>
 </html>

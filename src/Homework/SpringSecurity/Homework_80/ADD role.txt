@@ -1,0 +1,4 @@
+USE internet_store;
+
+ALTER TABLE user
+ADD role VARCHAR(20) NULL;
