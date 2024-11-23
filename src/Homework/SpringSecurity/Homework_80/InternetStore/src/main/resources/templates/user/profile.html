@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile Page</title>
+</head>
+<body>
+<section class="text-center">
+    <h1>User Profile Page</h1>
+    <h4>Имя: <span th:text="${user.name}"></span></h4>
+    <h4>Email: <span th:text="${user.email}"></span></h4>
+    <h4>Телефон: <span th:text="${user.phone}"></span></h4>
+    <a href="/logout">Выйти</a>
+</section>
+</body>
+</html>

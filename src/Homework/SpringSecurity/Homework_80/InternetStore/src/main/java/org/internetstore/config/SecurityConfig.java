@@ -8,12 +8,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private AuthSuccess authSuccess = new AuthSuccess();
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -38,14 +39,16 @@ public class SecurityConfig {
     http.
             authorizeHttpRequests(
              request -> request
-                     .requestMatchers("/", "/register", "/signin", "/saveUser").permitAll()
+                     .requestMatchers("/", "/register", "/signin", "/saveUser", "/item").permitAll()
                      .requestMatchers("/user/**").authenticated()
+                     .requestMatchers("/admin/**").authenticated()
             )
             .csrf(csrf ->csrf.disable())
             .formLogin(form -> form
                     .loginPage("/signin")
                     .loginProcessingUrl("/userLogin")
-                    .defaultSuccessUrl("/user/profile")
+                    .defaultSuccessUrl("/")
+                    .successHandler(authSuccess)
                     .permitAll()
             )
     ;

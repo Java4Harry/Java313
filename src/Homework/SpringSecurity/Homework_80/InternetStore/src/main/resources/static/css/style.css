@@ -1,0 +1,28 @@
+section .active{
+    background: #397e39 !important;
+    border: 1px solid #056405 !important;
+}
+
+.image{
+    width: 50%;
+    float: left;
+    margin-right: 20px;
+}
+
+.card-sh{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .3);
+    margin-top: 10px;
+}
+
+.card-sh-img{
+    min-height: 600px;
+}
+
+.card-admin{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .3);
+    margin-top: 10px;
+}
+
+.img{
+    width: 100%;
+}

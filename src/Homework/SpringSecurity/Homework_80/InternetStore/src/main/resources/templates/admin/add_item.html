@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-sh">
+                    <div class="card-header text-center fs-4">Добавление товара</div>
+                <div class="card-body">
+                    <form action="/admin/saveItem" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id">
+                        <div class="mb-3">
+                            Категория
+                            <select name="category" class="form-control">
+                                <option>Категория</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            Введите артикул <input type="text" name="partNumber" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите наименование <input type="text" name="title" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите модель <input type="text" name="model" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите страну происхождения <input type="text" name="country" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите вес <input type="text" name="weight" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите объем <input type="text" name="volume" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите стоимость <input type="text" name="price" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            Введите описание <textarea name="content" cols="" rows="7" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            Загрузите изображение
+                            <input type="file" name="file" class="form-control">
+                        </div>
+                        <button class="btn btn-success col-md-12">Добавить</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

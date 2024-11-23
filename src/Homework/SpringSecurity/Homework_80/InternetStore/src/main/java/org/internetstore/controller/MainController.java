@@ -37,14 +37,6 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/user/profile")
-    public String profile(Principal principal, Model model) {
-        String email = principal.getName();
-        User user = userRepo.findByEmail(email);
-        model.addAttribute("user", user);
-        return "profile";
-    }
-
     @GetMapping("/user/about")
     public String about() {
         return "about";
@@ -69,5 +61,10 @@ public class MainController {
             session.setAttribute("msg", "Ошибка регистрации");
         }
         return "redirect:/register";
+    }
+
+    @GetMapping("/item")
+    public String item(){
+        return "view_item";
     }
 }

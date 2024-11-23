@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-sh">
+                    <div class="card-header text-center">Добавление категории</div>
+                    <th:block th:if="${session.successMsg}">
+                        <p th:text="${session.successMsg}" class="text-success fw-bold text-center mt-4"></p>
+                        <th:block th:text="${@userService.removeSessionMessage()}">
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${session.errorMsg}">
+                        <p th:text="${session.errorMsg}" class="text-danger fw-bold text-center mt-4"></p>
+                        <th:block th:text="${@userService.removeSessionMessage()}">
+                        </th:block>
+                    </th:block>
+                <div class="card-body">
+                    <form action="/admin/saveCategory" method="post">
+                        <div class="mb-3">
+                            Добавьте категорию <input type="text" name="name" class="form-control">
+                        </div>
+                        <button class="btn btn-success col-md-12">Добавить</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card card-sh">
+                    <div class="card-header text-center">Список категорий</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th scope="col">Категория</th>
+                                <th scope="col">Действие</th>
+                            </tr>
+                            <tr th:each="cat : ${categories}">
+                                <td th:text="${cat.name}">Название категории</td>
+                                <td>
+                                    <a th:href="@{'/admin/loadEditCategory/'+${cat.id}}" class="btn btn-success btn-sm">Редактировать</a>
+                                    <a th:href="@{'/admin/deleteCategory/'+${cat.id}}" class="btn btn-danger btn-sm">Удалить</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
