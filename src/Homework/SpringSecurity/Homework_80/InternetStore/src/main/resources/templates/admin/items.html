@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container mt-4">
+        <div class="card card-sh">
+                    <div class="card-header text-center">
+                        <p class="fs-4 mt-4">Посмотреть товар</p>
+                        <th:block th:if="${session.successMsg}">
+                            <p th:text="${session.successMsg}" class="text-success fw-bold text-center mt-4"></p>
+                            <th:block th:text="${@userService.removeSessionMessage()}">
+                            </th:block>
+                        </th:block>
+                        <th:block th:if="${session.errorMsg}">
+                            <p th:text="${session.errorMsg}" class="text-danger fw-bold text-center mt-4"></p>
+                            <th:block th:text="${@userService.removeSessionMessage()}">
+                            </th:block>
+                        </th:block>
+                    </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th scope="col">Номер</th>
+                        <th scope="col">Категория</th>
+                        <th scope="col">Артикул</th>
+                        <th scope="col">Наименование</th>
+                        <th scope="col">Модель</th>
+                        <th scope="col">Стоимость</th>
+                        <th scope="col">Изображение</th>
+                        <th scope="col">Действие</th>
+                    </tr>
+                    <tr th:each="p, c : ${goods}">
+                        <th th:text="${c.count}"></th>
+                        <td th:text="${p.category}"></td>
+                        <td th:text="${p.partNumber}"></td>
+                        <td th:text="${p.name}"></td>
+                        <td th:text="${p.model}"></td>
+                        <td th:text="${p.price}"></td>
+                        <td><img th:src="@{'/images/goods/'+${p.image}}" width="100" alt=""></td>
+                        <td>
+                            <a th:href="@{'/admin/editItem/'+${p.id}}" class="btn btn-sm btn-success">Редактировать</a>
+                            <a th:href="@{'/admin/deleteItem/'+${p.id}}" class="btn btn-sm btn-danger">Удалить</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
