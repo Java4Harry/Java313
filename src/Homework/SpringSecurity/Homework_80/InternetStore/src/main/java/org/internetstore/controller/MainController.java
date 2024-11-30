@@ -43,12 +43,11 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index(Model m/*, @RequestParam(name="pageNo", defaultValue = "0") Integer pageNo, @RequestParam(name="pageSize", defaultValue = "4") Integer pageSize*/) {
+    public String index(Model m) {
         List<Category> categories = categoryService.getAllCategory();
         m.addAttribute("categories", categories);
         List<Goods> goods = goodsService.getAllGoods();
         m.addAttribute("goods", goods);
-        /*Page<Goods> page = goodsService.getAllGoodsPagination(pageNo, pageSize, category);*/
         return "index";
     }
 
@@ -86,11 +85,18 @@ public class MainController {
     }
 
     @GetMapping("/categories/{name}")
-    public String categories(@PathVariable String name, Model m){
+    public String categories(@PathVariable String name, Model m, @RequestParam(name="pageNo", defaultValue = "0") Integer pageNo, @RequestParam(name="pageSize", defaultValue = "4") Integer pageSize){
         List<Category> categories = categoryService.getAllCategory();
         m.addAttribute("categories", categories);
         m.addAttribute("goodsInCategory", goodsService.getGoodsByCategory(name));
         m.addAttribute("category", name);
+        Page<Goods> page = goodsService.getAllGoodsPagination(pageNo, pageSize, name);
+        List<Goods> goods = page.getContent();
+        m.addAttribute("goodsSize", goodsService.getGoodsByCategory(name).size());
+        m.addAttribute("pageNo", page.getNumber());
+        m.addAttribute("pageSize", pageSize);
+        m.addAttribute("totalGoods", page.getTotalElements());
+        m.addAttribute("totalPages", page.getTotalPages());
         return "view_category";
     }
 
