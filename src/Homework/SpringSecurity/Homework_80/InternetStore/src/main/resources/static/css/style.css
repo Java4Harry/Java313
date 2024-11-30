@@ -26,3 +26,7 @@ section .active{
 .img{
     width: 100%;
 }
+
+.td-width{
+    width: 300px;
+}

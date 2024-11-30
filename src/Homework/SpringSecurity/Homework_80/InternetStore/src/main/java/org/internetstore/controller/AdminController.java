@@ -144,8 +144,14 @@ public class AdminController {
     }
 
     @GetMapping("/items")
-    public String loadViewGoods(Model m){
-        m.addAttribute("goods", goodsService.getAllGoods());
+    public String loadViewGoods(Model m, @RequestParam(defaultValue = "") String searchItem){
+        List<Goods> goods = null;
+        if(searchItem != null && searchItem.length() > 0){
+            goods = goodsService.searchGoods(searchItem);
+        } else {
+            goods = goodsService.getAllGoods();
+        }
+        m.addAttribute("goods", goods);
         return "admin/items";
     }
 
@@ -158,5 +164,12 @@ public class AdminController {
             session.setAttribute("errorMsg", "Ошибка удаления товара");
         }
         return "redirect:/admin/items";
+    }
+
+    @GetMapping("/editItem/{id}")
+    public String editItem(@PathVariable int id, Model m){
+        m.addAttribute("good", goodsService.getGoodById(id));
+        m.addAttribute("categories", categoryService.getAllCategory());
+        return "admin/edit_items";
     }
 }

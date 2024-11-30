@@ -1,21 +1,31 @@
 package org.internetstore.controller;
 
 import jakarta.servlet.http.HttpSession;
+import org.internetstore.entity.Category;
+import org.internetstore.entity.Goods;
 import org.internetstore.entity.User;
 import org.internetstore.repository.UserRepo;
+import org.internetstore.service.ICategoryService;
+import org.internetstore.service.IGoodsService;
 import org.internetstore.service.IUserService;
 import org.internetstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private ICategoryService categoryService;
+
+    @Autowired
+    private IGoodsService goodsService;
 
     @Autowired
     private UserService userService;
@@ -33,7 +43,12 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model m/*, @RequestParam(name="pageNo", defaultValue = "0") Integer pageNo, @RequestParam(name="pageSize", defaultValue = "4") Integer pageSize*/) {
+        List<Category> categories = categoryService.getAllCategory();
+        m.addAttribute("categories", categories);
+        List<Goods> goods = goodsService.getAllGoods();
+        m.addAttribute("goods", goods);
+        /*Page<Goods> page = goodsService.getAllGoodsPagination(pageNo, pageSize, category);*/
         return "index";
     }
 
@@ -63,8 +78,28 @@ public class MainController {
         return "redirect:/register";
     }
 
-    @GetMapping("/item")
-    public String item(){
+    @GetMapping("/item/{id}")
+    public String item(@PathVariable int id, Model m){
+        Goods goodById = goodsService.getGoodById(id);
+        m.addAttribute("good", goodById);
         return "view_item";
+    }
+
+    @GetMapping("/categories/{name}")
+    public String categories(@PathVariable String name, Model m){
+        List<Category> categories = categoryService.getAllCategory();
+        m.addAttribute("categories", categories);
+        m.addAttribute("goodsInCategory", goodsService.getGoodsByCategory(name));
+        m.addAttribute("category", name);
+        return "view_category";
+    }
+
+    @GetMapping("/search")
+    public String searchItem(@RequestParam String ch, Model m){
+        List<Goods> searchGoods = goodsService.searchGoods(ch);
+        m.addAttribute("goodsInCategory", searchGoods);
+        List<Category> categories = categoryService.getAllCategory();
+        m.addAttribute("categories", categories);
+        return "view_category";
     }
 }

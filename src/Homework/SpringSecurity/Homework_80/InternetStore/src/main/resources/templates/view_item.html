@@ -6,12 +6,24 @@
 </head>
 <body>
 <section>
+    <div class="container-fluid bg-light p-3">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form action="search" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="ch">
+                        <button class="btn btn-success text-light ms-3">Поиск</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container card-sh card-sh-img">
         <div class="col-md-12 p-5">
-            <img src="/images/category_img/category_systemblock.jpg" alt="" class="image">
-            <p><strong>Артикул</strong></p>
-            <p><strong>Наименование</strong></p>
-            <p><strong>Описание</strong></p>
+            <img th:src="@{'/images/goods/'+${good.image}}" alt="" class="image">
+            <p><strong>Артикул: </strong><span th:text="${good.partNumber}"></span></p>
+            <p><strong>Наименование: </strong><span th:text="${good.name}"></span></p>
+            <p><strong>Описание: </strong><span th:text="${good.description}"></span></p>
             <div>
                 <table>
                     <tr>
@@ -19,22 +31,22 @@
                     </tr>
                     <tr>
                         <td>Модель</td>
-                        <td>******</td>
+                        <td th:text="${good.model}"></td>
                     </tr>
                     <tr>
                         <td>Страна производства</td>
-                        <td>******</td>
+                        <td th:text="${good.country}"></td>
                     </tr>
                     <tr>
                         <td>Вес</td>
-                        <td>******</td>
+                        <td th:text="${good.weight}"></td>
                     </tr>
                     <tr>
                         <td>Объем упаковки</td>
-                        <td>******</td>
+                        <td th:text="${good.volume}"></td>
                     </tr>
                 </table>
-                <p>Цена</p>
+                <p class="text-center fs-3 text-danger fw-bold"><strong>Цена: </strong><span th:text="${good.price}"></span> у.е.</p>
             </div>
         </div>
     </div>

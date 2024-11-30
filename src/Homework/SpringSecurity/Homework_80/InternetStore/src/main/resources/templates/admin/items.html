@@ -20,6 +20,19 @@
                             <th:block th:text="${@userService.removeSessionMessage()}">
                             </th:block>
                         </th:block>
+                        <hr>
+                        <div class="col-md-12 p-4">
+                            <form action="/admin/items" method="get">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="searchItem">
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-success">Поиск</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
             <div class="card-body">
                 <table class="table">
@@ -27,7 +40,7 @@
                         <th scope="col">Номер</th>
                         <th scope="col">Категория</th>
                         <th scope="col">Артикул</th>
-                        <th scope="col">Наименование</th>
+                        <th scope="col" class="td-width">Наименование</th>
                         <th scope="col">Модель</th>
                         <th scope="col">Стоимость</th>
                         <th scope="col">Изображение</th>

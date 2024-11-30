@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Good</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-sh">
+                    <div class="card-header text-center fs-4">Редактирование товара</div>
+                    <th:block th:if="${session.successMsg}">
+                        <p th:text="${session.successMsg}" class="text-success fw-bold text-center mt-4"></p>
+                        <th:block th:text="${@userService.removeSessionMessage()}">
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${session.errorMsg}">
+                        <p th:text="${session.errorMsg}" class="text-danger fw-bold text-center mt-4"></p>
+                        <th:block th:text="${@userService.removeSessionMessage()}">
+                        </th:block>
+                    </th:block>
+                    <div class="card-body">
+                        <form action="/admin/updateItem" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" th:value="${good.id}">
+                            <div class="mb-3">
+                                Категория
+                                <select name="category" class="form-control">
+                                    <option>[[${good.category}]]</option>
+                                    <option th:each="c:${categories}" th:text="${c.name}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                Введите артикул <input type="text" name="partNumber" class="form-control" th:value="${good.partNumber}">
+                            </div>
+                            <div class="mb-3">
+                                Введите наименование <input type="text" name="name" class="form-control" th:value="${good.name}">
+                            </div>
+                            <div class="mb-3">
+                                Введите модель <input type="text" name="model" class="form-control" th:value="${good.model}">
+                            </div>
+                            <div class="mb-3">
+                                Введите страну происхождения <input type="text" name="country" class="form-control" th:value="${good.country}">
+                            </div>
+                            <div class="mb-3">
+                                Введите вес <input type="text" name="weight" class="form-control" th:value="${good.weight}">
+                            </div>
+                            <div class="mb-3">
+                                Введите объем <input type="text" name="volume" class="form-control" th:value="${good.volume}">
+                            </div>
+                            <div class="mb-3">
+                                Введите стоимость <input type="text" name="price" class="form-control" th:value="${good.price}">
+                            </div>
+                            <div class="mb-3">
+                                Введите описание <textarea name="description" cols="" rows="7" class="form-control">[[${good.description}]]</textarea>
+                            </div>
+                            <div class="mb-3">
+                                Загрузите изображение
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <button class="btn btn-success col-md-12">Обновить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

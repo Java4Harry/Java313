@@ -2,7 +2,7 @@
 <html lang="en" th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Categories Page</title>
 </head>
 <body>
 <section>
@@ -24,28 +24,33 @@
                 <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                     <div class="card-body">
                         <p class="fs-5">Каталог</p>
-                    <div class="list-group">
-                        <a href="/" class="list-group-item list-group-item-action active" aria-current="true">Все товары</a>
-                        <a th:href="@{'/categories/'+${c.name}}" class="list-group-item list-group-item-action" th:each="c:${categories}" th:text="${c.name}"></a>
-                    </div>
+                        <div class="list-group">
+                            <a href="/" class="list-group-item list-group-item-action" aria-current="true" th:classappend="${category == ''} ? 'active' : ''">Все товары</a>
+                            <a th:href="@{'/categories/'+${c.name}}" class="list-group-item list-group-item-action" th:each="c:${categories}" th:text="${c.name}" th:classappend="${c.name == category} ? 'active' : ''"></a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                     <div class="card-body">
-                        <p class="fs-3 text-center">Каталог товаров</p>
+                        <p class="fs-3 text-center" th:text="${category}"></p>
                         <div class="row">
-                            <div class="col-md-3 mb-3" th:each="c:${categories}">
-                                <a th:href="@{'/categories/'+${c.name}}" class="text-decoration-none">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                    <img th:src="@{'/images/category_img/'+${c.image}}" alt="" width="100%">
-                                    <p class="fs-5 text-center" th:text="${c.name}"></p>
+                            <th:block th:if="${goodsInCategory.size > 0}">
+                            <div class="col-md-3 mb-3" th:each="c:${goodsInCategory}">
+                                <a th:href="@{'/item/'+${c.id}}" class="text-decoration-none">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <img th:src="@{'/images/goods/'+${c.image}}" alt="" width="100%">
+                                            <p class="fs-5 text-center" th:text="${c.name}"></p>
+                                        </div>
                                     </div>
-                                </div>
                                 </a>
                             </div>
+                            </th:block>
+                            <th:block th:unless="${goodsInCategory.size > 0}">
+                                <p class="fs-4 text-center nt-4 text-success">В категории нет товаров</p>
+                            </th:block>
                         </div>
                     </div>
                 </div>
