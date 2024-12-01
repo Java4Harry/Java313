@@ -57,13 +57,21 @@
                 <div class="row">
                     <div class="col-md-4">Количество товаров: <span th:text="${totalGoods}"></span></div>
                     <div class="col-md-6">
+                        <th:block th:if="${totalPages>1}">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Предыдущая</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" th:href="@{'?pageNo='+${pageNo-1}}" th:classappend="${isFirst}?'disabled':''">Предыдущая</a>
+                                </li>
+                                <li class="page-item" th:each="i:${#numbers.sequence(1, totalPages)}" th:classappend="${pageNo+1==i?'active':''}">
+                                    <a class="page-link" th:href="@{'?pageNo='+${i-1}}" th:text="${i}"></a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" th:href="@{'?pageNo='+${pageNo+1}}" th:classappend="${isLast}?'disabled':''">Следующая</a>
+                                </li>
                             </ul>
                         </nav>
+                        </th:block>
                     </div>
                 </div>
             </div>

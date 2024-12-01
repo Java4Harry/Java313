@@ -10,6 +10,7 @@ import org.internetstore.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin")
@@ -171,5 +173,16 @@ public class AdminController {
         m.addAttribute("good", goodsService.getGoodById(id));
         m.addAttribute("categories", categoryService.getAllCategory());
         return "admin/edit_items";
+    }
+
+    @PostMapping("/updateItem")
+    public String updateItem(@ModelAttribute Goods good, HttpSession session, @RequestParam("file") MultipartFile image) throws IOException {
+        Goods updateGood = goodsService.updateGood(good, image);
+        if(!ObjectUtils.isEmpty(updateGood)){
+            session.setAttribute("successMsg", "Товар обновлен");
+        } else {
+            session.setAttribute("errorMsg", "Ошибка обновления товара");
+        }
+        return "redirect:/admin/editItem/"+good.getId();
     }
 }

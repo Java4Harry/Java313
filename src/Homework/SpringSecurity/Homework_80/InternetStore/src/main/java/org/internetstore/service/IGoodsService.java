@@ -2,6 +2,7 @@ package org.internetstore.service;
 
 import org.internetstore.entity.Goods;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface IGoodsService {
     public List<Goods> getGoodsByCategory(String name);
     public List<Goods> searchGoods(String ch);
     public Page<Goods> getAllGoodsPagination(Integer pageNo, Integer pageSize, String category);
+    public Goods updateGood(Goods good, MultipartFile image);
 }

@@ -8,7 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,5 +77,35 @@ public class GoodsService implements IGoodsService {
             pageGoods = goodsRepository.findByCategory(pageable, category);
         }
         return pageGoods;
+    }
+
+    @Override
+    public Goods updateGood(Goods good, MultipartFile image) {
+        Goods dbGood = getGoodById(good.getId());
+        String imageName = image.isEmpty() ? dbGood.getImage() : image.getOriginalFilename();
+        dbGood.setPartNumber(good.getPartNumber());
+        dbGood.setCategory(good.getCategory());
+        dbGood.setName(good.getName());
+        dbGood.setModel(good.getModel());
+        dbGood.setCountry(good.getCountry());
+        dbGood.setWeight(good.getWeight());
+        dbGood.setVolume(good.getVolume());
+        dbGood.setPrice(good.getPrice());
+        dbGood.setDescription(good.getDescription());
+        dbGood.setImage(imageName);
+        Goods updateGood = goodsRepository.save(dbGood);
+        if(updateGood != null){
+            if(!image.isEmpty()){
+                try{
+                    String saveImage = new File("src/main/resources/static/images").getAbsolutePath();
+                    Path path = Paths.get(saveImage + File.separator + "goods" + File.separator + image.getOriginalFilename());
+                    Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            return good;
+        }
+        return null;
     }
 }

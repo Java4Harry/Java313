@@ -51,7 +51,7 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/user/about")
+    @GetMapping("/about")
     public String about() {
         return "about";
     }
@@ -88,15 +88,18 @@ public class MainController {
     public String categories(@PathVariable String name, Model m, @RequestParam(name="pageNo", defaultValue = "0") Integer pageNo, @RequestParam(name="pageSize", defaultValue = "4") Integer pageSize){
         List<Category> categories = categoryService.getAllCategory();
         m.addAttribute("categories", categories);
-        m.addAttribute("goodsInCategory", goodsService.getGoodsByCategory(name));
+//        m.addAttribute("goodsInCategory", goodsService.getGoodsByCategory(name));
         m.addAttribute("category", name);
         Page<Goods> page = goodsService.getAllGoodsPagination(pageNo, pageSize, name);
         List<Goods> goods = page.getContent();
+        m.addAttribute("goodsInCategory", goods);
         m.addAttribute("goodsSize", goodsService.getGoodsByCategory(name).size());
         m.addAttribute("pageNo", page.getNumber());
         m.addAttribute("pageSize", pageSize);
         m.addAttribute("totalGoods", page.getTotalElements());
         m.addAttribute("totalPages", page.getTotalPages());
+        m.addAttribute("isLast", page.isLast());
+        m.addAttribute("isFirst", page.isFirst());
         return "view_category";
     }
 
